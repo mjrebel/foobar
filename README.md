@@ -1,2 +1,3 @@
 # foobar
-# this is my attempt to learn ansible and create the base structure to run Tower
+# This is my attempt to learn ansible and create the base structure to run Tower for Windows Server Installation
+# Work in Progress
