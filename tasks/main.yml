@@ -1,1 +1,201 @@
+---
+### Check Windows Settings
 
+- name: Checking hostname - "{{ ansible_hostname }}"
+  win_hostname:
+    name: "{{ ansible_hostname }}"
+  register: res
+
+- name: Reboot if name changed
+  win_reboot:
+    reboot_timeout: 3600
+  when: res.reboot_required
+
+- name: Adding Windows Roles and Features
+  win_feature:
+    name:
+    - FS-FileServer
+    - FS-Data-Deduplication
+    - FS-VSS-Agent
+    - RSAT-AD-PowerShell
+    - SNMP-Service
+    - SNMP-WMI-Provider
+    - Windows-Server-Backup
+    - RSAT-SNMP
+    include_sub_features: yes
+    include_management_tools: yes
+    state: present
+  register: win_feature
+
+- name: reboot if feature requires 
+  win_reboot:
+    reboot_timeout: 3600  
+  when: win_feature.reboot_required
+
+### Create directories ###
+
+- name: Create Source Boot directory
+  win_file:
+    path: '{{ win_build_base }}\Builder\SourceWims\boot'
+    state: directory
+
+- name: Create SourceWims directory
+  win_file:
+    path: '{{ win_build_base }}\Builder\SourceWims\10.0'
+    state: directory
+
+
+- name: Create Drivers directory
+  win_file:
+    path: '{{ win_build_base }}\Builder\Drivers\10.0'
+    state: directory  
+
+- name: Create Drivers boot directory
+  win_file:
+    path: '{{ win_build_base }}\Builder\Drivers\boot'
+    state: directory  
+
+- name: Create bootinject directory
+  win_file:
+    path: '{{ win_build_base }}\Builder\bootinject\Deploy'
+    state: directory  
+
+- name: Create Windows bootinject directory
+  win_file:
+    path: '{{ win_build_base }}\Builder\bootinject\Windows\System32'
+    state: directory  
+
+- name: Create Tools directory
+  win_file:
+    path: '{{ win_build_base }}\Tools'
+    state: directory
+
+- name: Create ISO directory
+  win_file:
+    path: '{{ win_build_base }}\ISO'
+    state: directory
+
+
+### Source WIM Files ###
+
+- name: Download Windows Server 2016 media
+  win_get_url:
+    url: "{{ win_build_ws2016_iso }}"
+    dest: '{{ win_build_base }}\ISO\MS-WS2016.ISO'
+    force: no
+
+- name: Load Windows Server DVD
+  win_disk_image:
+    image_path: '{{ win_build_base }}\ISO\MS-WS2016.ISO'
+    state: present
+  register: image_dvd
+  changed_when:  false
+
+- name: Copy Windows install image
+  win_copy:
+    src: '{{ image_dvd.mount_paths[0] }}sources\install.wim'
+    dest: '{{ win_build_base }}\Builder\SourceWims\10.0\install.wim'
+    remote_src: yes
+    force: no
+
+- name: Copy Windows Roles and Windows sources
+  win_copy:
+    src: '{{ image_dvd.mount_paths[0] }}sources\sxs'
+    dest: '{{ win_build_base }}\Windows\2016\'
+    remote_src: yes
+    force: no
+
+- name: Unoad Windows Server DVD
+  win_disk_image:
+    image_path: '{{ win_build_base }}\ISO\MS-WS2016.ISO'
+    state: absent
+  ignore_errors: yes
+  changed_when: false
+
+- name: Copy WinPE Boot image
+  win_copy:
+    src: C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\en-us\winpe.wim
+    dest: '{{ win_build_base }}\Builder\SourceWims\boot\boot.wim'
+    remote_src: yes
+    force: no  
+
+
+##### Setup Builder files
+
+- name: Copy Builder files
+  win_copy:
+    src: Builder/
+    dest: '{{ win_build_base }}\Builder\'
+
+- name: Create Globals file
+  win_template:
+    src: Globals.j2
+    dest: '{{ win_build_base }}\Builder\Globals.ps1'   
+
+- name: Create StartInstall
+  win_template:
+    src: StartInstall.j2
+    dest: '{{ win_build_base }}\Builder\bootinject\Deploy\StartInstall.ps1'
+
+- name: Copy Builder System32 files
+  win_copy:
+    src: system32/
+    dest: '{{ win_build_base }}\Builder\bootinject\Windows\System32\'
+
+- name: Copy Builder Deploy files
+  win_copy:
+    src: Deploy/
+    dest: '{{ win_build_base }}\Builder\bootinject\Deploy\'
+
+
+#### Deployment  #######
+
+- name: Create the deployment ready directory in "{{ win_build_deploy }}"
+  win_file:
+    path: '{{ win_build_deploy }}\10.0'
+    state: directory
+
+- name: Create the deployment ready boot directory in "{{ win_build_deploy }}"
+  win_file:
+    path: '{{ win_build_deploy }}\boot'
+    state: directory    
+
+- name: Copy boot files
+  win_copy:
+    src: C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\Media\Boot
+    dest: '{{ win_build_deploy }}\boot\'
+    remote_src: yes
+
+- name: Copy Boot Manager
+  win_copy:
+    src: C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment\amd64\Media\bootmgr
+    dest: '{{ win_build_deploy }}\boot\bootmgr'
+    remote_src: yes
+
+- name: Download wimboot
+  win_get_url:
+    url: "{{ win_build_wimbooturl }}"
+    dest: '{{ win_build_base }}\Tools\wimboot-1.0.5.zip'
+    force: no    
+
+- name: Unzip wimboot
+  win_unzip:
+    src: '{{ win_build_base }}\Tools\wimboot-1.0.5.zip'
+    dest: '{{ win_build_base }}\Tools\'
+    creates: '{{ win_build_base }}\Tools\wimboot-1.0.5'
+
+- name: Copy wimboot into place
+  win_copy:
+    src: '{{ win_build_base }}\Tools\wimboot-1.0.5\wimboot'
+    dest: '{{ win_build_deploy }}\boot\wimboot'
+    remote_src: yes
+
+  
+- name: Configure deployment share
+  include: deploy-share.yml
+  when: win_build_share_cifs == true
+
+
+- name: Configure deployment web service
+  include: deploy-iis.yml
+  when: win_build_share_iis == true
