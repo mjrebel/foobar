@@ -1,5 +1,6 @@
 ---
 # defaults file for windows-initial-setup
+#these are referenced default variables that can be called as part of the build process
 
 ### Privacy Tweaks ###
 DisableTelemetry: true
