@@ -1,1 +1,222 @@
+---
+# defaults file for windows-initial-setup
 
+### Privacy Tweaks ###
+DisableTelemetry: true
+DisableWiFiSense: true
+DisableSmartScreen: true
+DisableWebSearch: true
+DisableAppSuggestions: true
+DisableActivityHistory: true 
+DisableBackgroundApps: true
+# DisableSensors                # EnableSensors
+DisableLocation: true
+DisableMapUpdates: true
+DisableFeedback: true
+DisableTailoredExperiences: true
+DisableAdvertisingID: true
+DisableWebLangList: true
+DisableCortana: true
+# DisableBiometrics: true             # EnableBiometrics
+# DisableCamera: false                 # EnableCamera
+# DisableMicrophone             # EnableMicrophone
+DisableErrorReporting: true
+# SetP2PUpdateLocal             # SetP2PUpdateInternet          # SetP2PUpdateDisable
+DisableDiagTrack: true
+DisableWAPPush: true
+# EnableClearRecentFiles        # DisableClearRecentFiles
+# DisableRecentFiles            # EnableRecentFiles
+
+### Security Tweaks ###
+# SetUACLow                     # SetUACHigh
+# EnableSharingMappedDrives     # DisableSharingMappedDrives
+DisableAdminShares: true              # EnableAdminShares
+# DisableFirewall               # EnableFirewall
+# HideDefenderTrayIcon          # ShowDefenderTrayIcon
+# DisableDefender               # EnableDefender
+# DisableDefenderCloud          # EnableDefenderCloud
+# EnableCtrldFolderAccess       # DisableCtrldFolderAccess
+# EnableCIMemoryIntegrity       # DisableCIMemoryIntegrity
+# EnableDefenderAppGuard        # DisableDefenderAppGuard
+HideAccountProtectionWarn: true       # ShowAccountProtectionWarn
+# DisableDownloadBlocking       # EnableDownloadBlocking
+DisableScriptHost: true               # EnableScriptHost
+EnableDotNetStrongCrypto: true        # DisableDotNetStrongCrypto
+# EnableMeltdownCompatFlag      # DisableMeltdownCompatFlag
+EnableF8BootMenu: true                # DisableF8BootMenu
+# DisableBootRecovery           # EnableBootRecovery
+# DisableRecoveryAndReset       # EnableRecoveryAndReset
+SetDEPOptOut: true                    # SetDEPOptIn
+
+### Network Tweaks ###
+SetCurrentNetworkPrivate: true        # SetCurrentNetworkPublic
+# SetUnknownNetworksPrivate     # SetUnknownNetworksPublic
+# DisableNetDevicesAutoInst     # EnableNetDevicesAutoInst
+# DisableHomeGroups             # EnableHomeGroups
+# DisableSMB1                   # EnableSMB1
+# DisableSMBServer              # EnableSMBServer
+# DisableNetBIOS                # EnableNetBIOS
+# DisableLLMNR                  # EnableLLMNR
+# DisableLLDP                   # EnableLLDP
+# DisableLLTD                   # EnableLLTD
+# DisableMSNetClient            # EnableMSNetClient
+# DisableQoS                    # EnableQoS
+# DisableIPv4                   # EnableIPv4
+# DisableIPv6                   # EnableIPv6
+# DisableNCSIProbe              # EnableNCSIProbe
+# DisableConnectionSharing      # EnableConnectionSharing
+DisableRemoteAssistance: true         # EnableRemoteAssistance
+# EnableRemoteDesktop           # DisableRemoteDesktop
+
+### Service Tweaks ###
+# DisableUpdateMSRT             # EnableUpdateMSRT
+# DisableUpdateDriver           # EnableUpdateDriver
+EnableUpdateMSProducts: true          # DisableUpdateMSProducts
+# DisableUpdateAutoDownload     # EnableUpdateAutoDownload
+DisableUpdateRestart: true            # EnableUpdateRestart
+DisableMaintenanceWakeUp: true        # EnableMaintenanceWakeUp
+# DisableAutoRestartSignOn      # EnableAutoRestartSignOn
+DisableSharedExperiences: true        # EnableSharedExperiences
+# EnableClipboardHistory        # DisableClipboardHistory
+DisableAutoplay: true                 # EnableAutoplay
+DisableAutorun: true                  # EnableAutorun
+# DisableRestorePoints          # EnableRestorePoints
+# EnableStorageSense            # DisableStorageSense
+# DisableDefragmentation        # EnableDefragmentation
+# DisableSuperfetch             # EnableSuperfetch
+# DisableIndexing               # EnableIndexing
+# DisableSwapFile               # EnableSwapFile
+# DisableRecycleBin             # EnableRecycleBin
+EnableNTFSLongPaths: true             # DisableNTFSLongPaths
+# DisableNTFSLastAccess         # EnableNTFSLastAccess
+# SetBIOSTimeUTC                # SetBIOSTimeLocal
+# EnableHibernation             # DisableHibernation
+# DisableSleepButton            # EnableSleepButton
+# DisableSleepTimeout           # EnableSleepTimeout
+# DisableFastStartup            # EnableFastStartup
+# DisableAutoRebootOnCrash      # EnableAutoRebootOnCrash
+
+### UI Tweaks ###
+DisableActionCenter: true             # EnableActionCenter
+DisableLockScreen: true               # EnableLockScreen
+# DisableLockScreenRS1          # EnableLockScreenRS1
+HideNetworkFromLockScreen: true       # ShowNetworkOnLockScreen
+HideShutdownFromLockScreen: true      # ShowShutdownOnLockScreen
+DisableLockScreenBlur: true           # EnableLockScreenBlur
+# DisableAeroShake              # EnableAeroShake
+DisableAccessibilityKeys: true        # EnableAccessibilityKeys
+ShowTaskManagerDetails: true          # HideTaskManagerDetails
+ShowFileOperationsDetails: true       # HideFileOperationsDetails
+# EnableFileDeleteConfirm       # DisableFileDeleteConfirm
+HideTaskbarSearch: true               # ShowTaskbarSearchIcon         # ShowTaskbarSearchBox
+HideTaskView: true                    # ShowTaskView
+ShowSmallTaskbarIcons: true           # ShowLargeTaskbarIcons
+SetTaskbarCombineWhenFull: true       # SetTaskbarCombineNever        # SetTaskbarCombineAlways
+HideTaskbarPeopleIcon: true           # ShowTaskbarPeopleIcon
+ShowTrayIcons: true                   # HideTrayIcons
+# ShowSecondsInTaskbar          # HideSecondsFromTaskbar
+DisableSearchAppInStore: true         # EnableSearchAppInStore
+DisableNewAppPrompt: true             # EnableNewAppPrompt
+# HideRecentlyAddedApps         # ShowRecentlyAddedApps
+# HideMostUsedApps              # ShowMostUsedApps
+# SetControlPanelSmallIcons     # SetControlPanelLargeIcons     # SetControlPanelCategories
+DisableShortcutInName: true           # EnableShortcutInName
+# HideShortcutArrow             # ShowShortcutArrow
+SetVisualFXPerformance: true          # SetVisualFXAppearance
+# EnableTitleBarColor           # DisableTitleBarColor
+# EnableDarkTheme               # DisableDarkTheme
+# AddENKeyboard                 # RemoveENKeyboard
+# EnableNumlock                 # DisableNumlock
+# DisableEnhPointerPrecision    # EnableEnhPointerPrecision
+# SetSoundSchemeNone            # SetSoundSchemeDefault
+# DisableStartupSound           # EnableStartupSound
+# DisableChangingSoundScheme    # EnableChangingSoundScheme
+# EnableVerboseStatus           # DisableVerboseStatus
+DisableF1HelpKey: true                # EnableF1HelpKey
+
+### Explorer UI Tweaks ###
+# ShowExplorerTitleFullPath     # HideExplorerTitleFullPath
+ShowKnownExtensions: true             # HideKnownExtensions
+ShowHiddenFiles: true                 # HideHiddenFiles
+# ShowSuperHiddenFiles          # HideSuperHiddenFiles
+# ShowEmptyDrives               # HideEmptyDrives
+# ShowFolderMergeConflicts      # HideFolderMergeConflicts
+EnableNavPaneExpand: true             # DisableNavPaneExpand
+# ShowNavPaneAllFolders         # HideNavPaneAllFolders
+# EnableFldrSeparateProcess     # DisableFldrSeparateProcess
+# EnableRestoreFldrWindows      # DisableRestoreFldrWindows
+# ShowEncCompFilesColor         # HideEncCompFilesColor
+# DisableSharingWizard          # EnableSharingWizard
+# HideSelectCheckboxes          # ShowSelectCheckboxes
+HideSyncNotifications: true           # ShowSyncNotifications
+HideRecentShortcuts: true             # ShowRecentShortcuts
+SetExplorerThisPC: true               # SetExplorerQuickAccess
+HideQuickAccess: true                 # ShowQuickAccess
+# HideRecycleBinFromDesktop     # ShowRecycleBinOnDesktop
+ShowThisPCOnDesktop: true             # HideThisPCFromDesktop
+# ShowUserFolderOnDesktop       # HideUserFolderFromDesktop
+# ShowControlPanelOnDesktop     # HideControlPanelFromDesktop
+# ShowNetworkOnDesktop          # HideNetworkFromDesktop
+# ShowBuildNumberOnDesktop      # HideBuildNumberFromDesktop
+HideDesktopFromThisPC: true           # ShowDesktopInThisPC
+# HideDesktopFromExplorer       # ShowDesktopInExplorer
+HideDocumentsFromThisPC: true         # ShowDocumentsInThisPC
+# HideDocumentsFromExplorer     # ShowDocumentsInExplorer
+HideDownloadsFromThisPC: true         # ShowDownloadsInThisPC
+# HideDownloadsFromExplorer     # ShowDownloadsInExplorer
+HideMusicFromThisPC: true             # ShowMusicInThisPC
+# HideMusicFromExplorer         # ShowMusicInExplorer
+HidePicturesFromThisPC: true          # ShowPicturesInThisPC
+# HidePicturesFromExplorer      # ShowPicturesInExplorer
+HideVideosFromThisPC: true            # ShowVideosInThisPC
+# HideVideosFromExplorer        # ShowVideosInExplorer
+Hide3DObjectsFromThisPC: true         # Show3DObjectsInThisPC
+# Hide3DObjectsFromExplorer     # Show3DObjectsInExplorer
+# HideIncludeInLibraryMenu      # ShowIncludeInLibraryMenu
+# HideGiveAccessToMenu          # ShowGiveAccessToMenu
+# HideShareMenu                 # ShowShareMenu
+# DisableThumbnails             # EnableThumbnails
+DisableThumbnailCache: true           # EnableThumbnailCache
+DisableThumbsDBOnNetwork: true        # EnableThumbsDBOnNetwork
+
+### Application Tweaks ###
+DisableOneDrive: true                 # EnableOneDrive
+UninstallOneDrive: true               # InstallOneDrive
+UninstallMsftBloat: true              # InstallMsftBloat
+UninstallThirdPartyBloat: true        # InstallThirdPartyBloat
+# UninstallWindowsStore         # InstallWindowsStore
+DisableXboxFeatures: true             # EnableXboxFeatures
+# DisableFullscreenOptims       # EnableFullscreenOptims
+DisableAdobeFlash: true               # EnableAdobeFlash
+DisableEdgePreload: true              # EnableEdgePreload
+DisableEdgeShortcutCreation: true     # EnableEdgeShortcutCreation
+DisableIEFirstRun: true               # EnableIEFirstRun
+DisableFirstLogonAnimation: true      # EnableFirstLogonAnimation
+DisableMediaSharing: true             # EnableMediaSharing
+# EnableDeveloperMode           # DisableDeveloperMode
+# UninstallMediaPlayer          # InstallMediaPlayer
+# UninstallInternetExplorer     # InstallInternetExplorer
+# UninstallWorkFolders          # InstallWorkFolders
+# UninstallHelloFace            # InstallHelloFace
+# UninstallMathRecognizer       # InstallMathRecognizer
+# UninstallPowerShellV2         # InstallPowerShellV2
+# UninstallPowerShellISE        # InstallPowerShellISE
+# InstallLinuxSubsystem         # UninstallLinuxSubsystem
+# InstallHyperV                 # UninstallHyperV
+# UninstallSSHClient            # InstallSSHClient
+# InstallSSHServer              # UninstallSSHServer
+# InstallNET23                  # UninstallNET23
+SetPhotoViewerAssociation: true       # UnsetPhotoViewerAssociation
+AddPhotoViewerOpenWith: true          # RemovePhotoViewerOpenWith
+# UninstallPDFPrinter           # InstallPDFPrinter
+UninstallXPSPrinter: true             # InstallXPSPrinter
+RemoveFaxPrinter: true                # AddFaxPrinter
+# UninstallFaxAndScan           # InstallFaxAndScan
+
+### Server Specific Tweaks ###
+# HideServerManagerOnLogin      # ShowServerManagerOnLogin
+# DisableShutdownTracker        # EnableShutdownTracker
+# DisablePasswordPolicy         # EnablePasswordPolicy
+# DisableCtrlAltDelLogin        # EnableCtrlAltDelLogin
+# DisableIEEnhancedSecurity     # EnableIEEnhancedSecurity
+# EnableAudio                   # DisableAudio
